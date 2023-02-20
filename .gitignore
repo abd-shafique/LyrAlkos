@@ -1,0 +1,27 @@
+# Python-related files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+
+# Config files
+config.py
+
+# Environment-related files
+venv/
+.env
+*.env
+env/
+ENV/
+*.log
+
+# Jupyter Notebook-related files
+.ipynb_checkpoints/
+
+# Miscellaneous files
+*.DS_Store
+*.bak
+*.swp
+Thumbs.db
