@@ -1,6 +1,8 @@
 import lyricsgenius
 import config
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=config.OPENAI_API_KEY)
 
 
 def get_lyrics(title, artist, token):
@@ -15,8 +17,7 @@ def get_lyrics(title, artist, token):
     return search_results.lyrics
 
 
-def analyze_lyrics(title, artist, lyrics, token):
-    openai.api_key = token
+def analyze_lyrics(title, artist, lyrics):
 
     prompt = (
         f"Explain the meaning of this song. \n"
@@ -25,8 +26,8 @@ def analyze_lyrics(title, artist, lyrics, token):
         f"{lyrics}\n"
     )
 
-    response = openai.Completion.create(
-        engine="text-davinci-003",
+    response = client.completions.create(
+        model="gpt-3.5-turbo-1106",
         prompt=prompt,
         max_tokens=1000,
         temperature=1,
@@ -47,7 +48,7 @@ def main():
     if lyrics is None:
         print(f"Error: {song_name} performed by {artist_name} was not found.")
     else:
-        print(analyze_lyrics(song_name, artist_name, lyrics, config.OPENAI_API_KEY))
+        print(analyze_lyrics(song_name, artist_name, lyrics))
 
 
 if __name__ == "__main__":
