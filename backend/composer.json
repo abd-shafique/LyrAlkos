@@ -1,0 +1,35 @@
+{
+  "name": "lyralkos/backend",
+  "description": "Backend API for LyrAlkos - Song Lyrics Analysis Tool",
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "slim/slim": "^4.12",
+    "slim/psr7": "^1.6",
+    "vlucas/phpdotenv": "^5.6",
+    "monolog/monolog": "^3.5",
+    "php-di/php-di": "^7.0",
+    "guzzlehttp/guzzle": "^7.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.5",
+    "phpstan/phpstan": "^1.10",
+    "squizlabs/php_codesniffer": "^3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "LyrAlkos\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "LyrAlkos\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "phpstan": "phpstan analyse src tests",
+    "cs": "phpcs --standard=PSR12 src tests",
+    "cs-fix": "phpcbf --standard=PSR12 src tests"
+  }
+}
